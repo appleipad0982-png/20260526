@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>臺北市雨量站即時監測 — Mappa 地圖版</title>
+
+  <!-- 中文字型 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Leaflet 樣式表（Mappa 用 Leaflet 當底圖引擎，必須引入 CSS） -->
+  <link rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <!-- p5.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"></script>
+  <!-- Leaflet（地圖引擎） -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!--
+    ★ Mappa（mappa-mundi）函式庫
+    -------------------------------------------------------------
+    重要：npm 上的 mappa-mundi 1.0.0 / 1.0.1 其實是「p5.maps」這個
+    不相容的套件（沒有 overlay() 方法），這是先前 console 出現
+    「p5.maps Loaded」並報錯 "myMap.overlay is not a function" 的原因。
+    真正的 Mappa（含 overlay / tileMap / latLngToPixel）是 0.0.5 版。
+
+    為避免 CDN 提供錯誤版本，這裡直接載入專案內附的本地檔案
+    mappa.js（已確認為 0.0.5 正確版本）。
+  -->
+  <script src="mappa.js"></script>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;            /* 全螢幕，隱藏捲軸 */
+      background: #060b18;
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+    /* p5.js 畫布：透明，疊在 Mappa/Leaflet 地圖上方 */
+    canvas {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <!-- p5.js 會自動建立 canvas；Mappa 會自動建立並管理 Leaflet 地圖 -->
+  <script src="sketch.js"></script>
+</body>
+</html>
